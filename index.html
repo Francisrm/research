@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Full Width & Height Video</title>
+  <title>Francisca Marquess</title>
   
   <!-- Google Fonts Embed Code -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -77,6 +77,25 @@
       z-index: -1;
     }
 
+    /* Sound icon */
+    .sound-icon {
+      position: absolute;
+      top: 20px;
+      right: 20px;
+      padding: 10px;
+      border-radius: 50%;
+      cursor: pointer;
+      z-index: 1000;
+    }
+    .sound-icon > svg {
+      fill: white;
+    }
+
+    .sound-icon img {
+      width: 30px;
+      height: 30px;
+    }
+
     /* Media query for mobile devices */
     @media (max-width: 768px) { /* You can adjust the max-width as needed */
       .description {
@@ -107,10 +126,35 @@
       </p>
       <a href="https://drive.google.com/file/d/1v6QxTHTt5xnpA0eA7b-33SdecgjyWRb0/view?usp=share_link" class="pdf-link" target="_blank">Download PDF</a>
     </div>
-    <video class="video" autoplay loop muted>
+
+    <!-- Sound control icon -->
+    <div class="sound-icon" id="soundControl">
+      <img src="assets/audio-02.svg" alt="Sound Off Icon" id="soundIcon">
+    </div>
+
+    <video id="backgroundVideo" class="video" autoplay loop muted>
       <source src="assets/video_background_compressed.mp4" type="video/mp4">
       Your browser does not support the video tag.
     </video>
   </div>
+
+  <script>
+    const video = document.getElementById('backgroundVideo');
+    const soundControl = document.getElementById('soundControl');
+    const soundIcon = document.getElementById('soundIcon');
+    let isMuted = true;
+
+    soundControl.addEventListener('click', () => {
+      isMuted = !isMuted;
+      video.muted = isMuted;
+      
+      // Toggle the icon between sound on and sound off
+      if (isMuted) {
+        soundIcon.src = 'assets/audio-02.svg';
+      } else {
+        soundIcon.src = 'assets/audio-01.svg';
+      }
+    });
+  </script>
 </body>
 </html>
